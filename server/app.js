@@ -1,20 +1,21 @@
 const dotenv = require('dotenv');
 const express = require('express');
-const mongoose = require('mongoose');
+
 
 const app = express();
-const port = 3000;
-
 dotenv.config({path: './.env'})
 
-const DB = process.env.DATABASE;
+require('./db/conn')
+
+app.use(express.json());
+
+// const User = require('./model/userSchema')
+
+app.use(require('./router/auth'));
+
+const PORT = process.env.PORT;
 
 
-mongoose.connect(DB).then(()=>{
-    console.log("connection established");
-}).catch((err)=>{
-    console.log("not found",);
-})
 const middleware = (req,res,next)=>{
 
     console.log("This a middleware function");
@@ -43,7 +44,7 @@ app.get('/signup', (req,res)=>{
 })
 
 
-app.listen(port, ()=>{
-    console.log(`The apps is listening on ${port}`);
+app.listen(PORT, ()=>{
+    console.log(`The apps is listening on ${PORT}`);
 })
 

@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 
 const User = require('../model/userSchema');
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 router.get('/',(req, res)=>{
@@ -22,9 +23,11 @@ router.post('/register', async(req, res)=>{
         {
             return res.status(422).json({error:  "Password are not matching"})
         }
+       else{
         const user = new User({name, email,phone, work, password, cpassword});
         await user.save();
         res.status(201).json({message: "user registered successfully"});
+       }
 
         
     } catch (err) {
@@ -54,13 +57,15 @@ router.post('/signin', async(req, res)=>{
         if(userLogin)
         {
             const isMatch = await bcrypt.compare(password, userLogin.password);
+            const token = await userLogin.generateAuthToken();
+            // console.log(token);
             if(!isMatch)
             {
                 res.status(400).json({err:" Invalid credentials. Please try again."});
             }
             else{
 
-                res.json({message: 'User logged in successfully'});
+                res.status(201).json({message: 'User logged in successfully'});
             }
         }
         else{

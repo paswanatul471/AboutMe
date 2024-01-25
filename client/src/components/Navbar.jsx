@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineAlignRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,33 +26,33 @@ const Navbar = () => {
           >
             <div className="text-white lg:flex-grow">
               {/* Your navigation links go here */}
-              <a href="/" className="block lg:inline-block text-white mr-4">
+              <Link to="/" className="block lg:inline-block text-white mr-4">
                 Home
-              </a>
-              <a
-                href="/about"
+              </Link>
+              <Link
+                to="/about"
                 className="block lg:inline-block text-white mr-4"
               >
                 About
-              </a>
-              <a
-                href="/contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="block lg:inline-block text-white mr-4"
               >
                 Contact
-              </a>
-              <a
-                href="/signup"
+              </Link>
+              <Link
+                to="/signup"
                 className="block lg:inline-block text-white mr-4"
               >
                 Sign Up
-              </a>
-              <a
-                href="/login"
+              </Link>
+              <Link
+                to="/login"
                 className="block lg:inline-block text-white mr-4"
               >
                 Log in
-              </a>
+              </Link>
             </div>
           </div>
         </div>

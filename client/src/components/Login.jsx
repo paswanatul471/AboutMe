@@ -38,7 +38,7 @@ const Login = () => {
                 <div className="form-group">
                   <button
                     type="submit"
-                    className="w-80 bg-slate-500 text-white py-2 px-4"
+                    className="w-[90%] bg-slate-500 text-white py-2 px-4"
                   >
                     Sign in
                   </button>
